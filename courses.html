@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>
+Digital Aristotle
+</title>
+<style>
+body{
+  background-color:#e5e5e5;
+}
+.material{
+  background-color:#fff;
+  text-align:center;
+  padding:10px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+}
+.menu{
+  color:black;
+  display:inline-block;
+  margin-left:10px;
+  margin-right:10px;
+}
+.courselink{
+  color:black;
+  text-decoration:none;
+}
+.coursediv{
+  margin-top:5px;
+  width:100%;
+  text-align:left;
+  border: 7px black solid;
+  border-radius:10px;
+  border-top-left-radius:0px;
+  padding:10px;
+  box-sizing: border-box;
+  background-color: #e0e0e0;
+  color:black;
+  text-decoration:none;
+}
+.coursediv:hover{
+  background-color:#79bfd8;
+}
+</style>
+</head>
+<body>
+<div class="material" style="width:80%;min-height:100vh;margin-left:10%;">
+<div style="border-bottom:3px black solid;">
+<h1>
+<u>
+Digital Aristotle
+</u>
+</h1>
+<div style="width:100%;text-align:center;">
+<h2 class="menu">
+<a href="courses.html" style="color:black;">
+Courses
+</a>
+</h2>
+<h2 class="menu">
+<a href="index.html" style="color:black;">
+About
+</a>
+</h2>
+<h2 class="menu">
+<a href="contribute.html" style="color:black;">
+Contribute
+</a>
+</h2>
+</div>
+</div>
+<h2>
+Welcome to Open Source Education
+</h2>
+<h1>
+Select a course to get started!
+</h1>
+<div id="coursesdiv" style="width:100%;">
+
+</div>
+</body>
+<script src="aristotle.js">
+</script>
+<script>
+var courses=[];
+</script>
+<script src="courses.js">
+</script>
+<script>
+courses.sort();
+p=document.getElementById("coursesdiv");
+for(var i=0;i<courses.length;i++){
+  var link=document.createElement("a");
+  link.className="courselink";
+  link.href="/"+courses[i].name.toLowerCase();
+  var newelem=document.createElement("div");
+  newelem.className="coursediv";
+  p.appendChild(link);
+  link.appendChild(newelem);
+  var title=document.createElement("h2");
+  var grade=courses[i].grade;
+  if(grade<1){
+    grade="Pre-k/Kindegraten";
+  }
+  if(grade<6&&grade>0){
+    grade="Elementary School"
+  }
+  if(grade<9&&grade>5){
+    grade="Middle School"
+  }
+  if(grade<13&&grade>8){
+    grade="High School"
+  }
+  if(grade>12){
+    grade="College or Beyond"
+  }
+  title.innerHTML=courses[i].name+"-"+grade;
+  newelem.appendChild(title);
+  var desc=document.createElement("p");
+  desc.innerHTML=courses[i].description;
+  newelem.appendChild(desc);
+}
+</script>
+</html>
